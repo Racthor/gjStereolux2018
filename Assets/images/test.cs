@@ -32,6 +32,14 @@ public class test : MonoBehaviour
         return tex;
     }
 
+    void Update()
+    {
+        var camPos = Camera.main.transform.position;
+        var pos = transform.position;
+        pos.x = camPos.x;
+        transform.position = pos;
+    }
+
     IEnumerator GetScreenShoot()
     {
         Debug.Log(Application.persistentDataPath);
