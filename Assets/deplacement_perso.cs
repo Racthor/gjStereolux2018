@@ -6,6 +6,7 @@ public class deplacement_perso : PhysicsObject {
 
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
+    public AudioSource pas;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -14,6 +15,7 @@ public class deplacement_perso : PhysicsObject {
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        //pas = GetComponent<AudioSource>();
     }
 
     protected override void ComputeVelocity()
@@ -21,12 +23,12 @@ public class deplacement_perso : PhysicsObject {
         Vector2 move = Vector2.zero;
 
         move.x = Input.GetAxis("Horizontal");
-
-        if (Input.GetButtonDown("Jump") && grounded)
+        //pas.enabled = true;
+        if (Input.GetButtonDown("Vertical") && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetButtonUp("Vertical"))
         {
             if (velocity.y > 0)
             {
@@ -44,5 +46,7 @@ public class deplacement_perso : PhysicsObject {
         //animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
         targetVelocity = move * maxSpeed;
+
+        //pas.enabled = false;
     }
 }
